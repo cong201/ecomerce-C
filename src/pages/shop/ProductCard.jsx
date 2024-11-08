@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import RatingStars from "../../components/RatingStars";
 
 const ProductCard = ({ products }) => {
   console.log(products);
@@ -29,6 +30,7 @@ const ProductCard = ({ products }) => {
               {product.price}
               {product?.oldPrice ? <s>${product?.oldPrice}</s> : null}
             </p>
+            <RatingStars rating={product.rating} />
           </div>
         </div>
       ))}

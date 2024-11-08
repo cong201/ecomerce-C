@@ -1,7 +1,10 @@
+import Blogs from "../blogs/Blogs";
 import TrendingProduct from "../shop/TrendingProduct";
 import Banner from "./Banner";
 import Categories from "./Categories";
+import DetailSection from "./DetailSection";
 import HeroSection from "./HeroSection";
+import PromoBanner from "./PromoBanner";
 
 const Home = () => {
   return (
@@ -10,6 +13,9 @@ const Home = () => {
       <Categories />
       <HeroSection />
       <TrendingProduct />
+      <DetailSection />
+      <PromoBanner />
+      <Blogs />
     </>
   );
 };

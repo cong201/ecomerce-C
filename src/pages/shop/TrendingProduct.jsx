@@ -15,7 +15,16 @@ const TrendingProduct = () => {
         manage inventory, products, orders, and users, including the ability to
         upload images etc.
       </p>
-      <ProductCard products={products} />
+      <div className="mt-12">
+        <ProductCard products={products.slice(0, visibleProducts)} />
+      </div>
+      <div className="product__btn">
+        {visibleProducts < products.length && (
+          <button className="btn" onClick={loadMoreProducts}>
+            Load More
+          </button>
+        )}
+      </div>
     </section>
   );
 };
