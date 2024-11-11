@@ -55,6 +55,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
+      <div className="footer__bar">Copyright C-Ecommerce</div>
     </>
   );
 };

@@ -11,18 +11,18 @@ const Categories = () => {
       img: category1,
     },
     {
-      name: "Alice",
-      path: "alice",
+      name: "Dress Collection",
+      path: "dress",
       img: category2,
     },
     {
-      name: "Mina",
-      path: "mina",
+      name: "Jewellery",
+      path: "jewellery",
       img: category3,
     },
     {
-      name: "Julliet",
-      path: "julliet",
+      name: "Cosmetics",
+      path: "cosmetics",
       img: category4,
     },
   ];
