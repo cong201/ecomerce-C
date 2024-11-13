@@ -7,7 +7,7 @@ const filters = {
   colors: ["all", "black", "red", "gold", "blue", "silver", "beige", "green"],
   priceRanges: [
     { label: "Under $50", min: 0, max: 50 },
-    { label: "$50 - 100$", min: 50, max: 100 },
+    { label: "$50 - $100", min: 50, max: 100 },
     { label: "$100 - $200", min: 100, max: 200 },
     { label: "$200 and above", min: 200, max: Infinity },
   ],
@@ -17,7 +17,7 @@ const ShopPage = () => {
   const [filtersState, setFiltersState] = useState({
     category: "all",
     color: "all",
-    priceRanges: "",
+    priceRange: "",
   });
   //filtering funtion
   const applyFilters = () => {
@@ -31,12 +31,12 @@ const ShopPage = () => {
     //filter by color
     if (filtersState.color && filtersState.color !== "all") {
       filteredProducts = filteredProducts.filter(
-        (product) => product.color === filtersState
+        (product) => product.color === filtersState.color
       );
     }
     //filter by price range
-    if (filtersState.priceRanges) {
-      const [minPrice, maxPrice] = filtersState.priceRanges
+    if (filtersState.priceRange) {
+      const [minPrice, maxPrice] = filtersState.priceRange
         .split("-")
         .map(Number);
       filteredProducts = filteredProducts.filter(

@@ -6,6 +6,8 @@ const ShopFiltering = ({
   setFiltersState,
   clearFilters,
 }) => {
+  console.log(filters);
+
   return (
     <div className="space-y-5 flex-shrink-0">
       <h3>Filters</h3>
@@ -57,18 +59,13 @@ const ShopFiltering = ({
         <h4 className="font-medium text-lg">Price Range</h4>
         <hr />
         {filters.priceRanges.map((range) => (
-          <label
-            key={`${range.min}-${range.max}`}
-            className="capitalize cursor-pointer"
-          >
+          <label key={range.label} className="capitalize cursor-pointer">
             <input
               type="radio"
               name="priceRange"
               id="priceRange"
-              value={`${range.min} - ${range.max}`}
-              checked={
-                filtersState.priceRange === `${range.min} - ${range.max}`
-              }
+              value={`${range.min}-${range.max}`}
+              checked={filtersState.priceRange === `${range.min}-${range.max}`}
               onChange={(e) =>
                 setFiltersState({ ...filtersState, priceRange: e.target.value })
               }
