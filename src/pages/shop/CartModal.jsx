@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import OrderSumary from "./OrderSumary";
 
 const CartModal = ({ products, isOpen, onClose }) => {
   return (
@@ -26,7 +27,9 @@ const CartModal = ({ products, isOpen, onClose }) => {
               <i className="ri-xrp-fill bg-black p-1 text-white"></i>
             </button>
           </div>
-          <div>
+
+          {/*cart items*/}
+          <div className="cart-items">
             {products.length === 0 ? (
               <div>Your Cart is empty</div>
             ) : (
@@ -69,6 +72,9 @@ const CartModal = ({ products, isOpen, onClose }) => {
               ))
             )}
           </div>
+
+          {/*calculation*/}
+          {products.length > 0 && <OrderSumary />}
         </div>
       </div>
     </div>
