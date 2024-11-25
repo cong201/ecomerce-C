@@ -1,13 +1,20 @@
 import PropTypes from "prop-types";
 import OrderSumary from "./OrderSumary";
 import { useDispatch } from "react-redux";
-import { updateQuantity } from "../../redux/feature/cart/cartSlice";
+import {
+  removeFromCart,
+  updateQuantity,
+} from "../../redux/feature/cart/cartSlice";
 
 const CartModal = ({ products, isOpen, onClose }) => {
   const dispatch = useDispatch();
   const handleQuantity = (type, id) => {
     const payload = { type, _id: id };
     dispatch(updateQuantity(payload));
+  };
+  const handleRemove = (e, id) => {
+    e.preventDefault();
+    dispatch(removeFromCart({ id }));
   };
   return (
     <div
@@ -75,7 +82,10 @@ const CartModal = ({ products, isOpen, onClose }) => {
                         +
                       </button>
                       <div className="ml-5">
-                        <button className="text-red-500 hover:text-red-800 mr-4">
+                        <button
+                          onClick={(e) => handleRemove(e, item._id)}
+                          className="text-red-500 hover:text-red-800 mr-4"
+                        >
                           Remove
                         </button>
                       </div>
