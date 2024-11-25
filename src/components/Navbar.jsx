@@ -8,7 +8,6 @@ const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const handleCartToggle = () => {
     setIsCartOpen(!isCartOpen);
-    console.log("hdaj");
   };
   return (
     <header>

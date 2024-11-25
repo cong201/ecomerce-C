@@ -1,7 +1,14 @@
 import PropTypes from "prop-types";
 import OrderSumary from "./OrderSumary";
+import { useDispatch } from "react-redux";
+import { updateQuantity } from "../../redux/feature/cart/cartSlice";
 
 const CartModal = ({ products, isOpen, onClose }) => {
+  const dispatch = useDispatch();
+  const handleQuantity = (type, id) => {
+    const payload = { type, _id: id };
+    dispatch(updateQuantity(payload));
+  };
   return (
     <div
       className={`fixed z-[1000] inset-0 bg-black bg-opacity-50 translate-opacity ${
@@ -54,11 +61,17 @@ const CartModal = ({ products, isOpen, onClose }) => {
                       </p>
                     </div>
                     <div className="flex flex-row md:justify-start justify-end items-center mt-2">
-                      <button className="size-6 flex items-center justify-center px-1.5 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white ml-8">
+                      <button
+                        onClick={() => handleQuantity("decrement", item._id)}
+                        className="size-6 flex items-center justify-center px-1.5 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white ml-8"
+                      >
                         -
                       </button>
                       <span className="px-2 text-center">{item.quantity}</span>
-                      <button className="size-6 flex items-center justify-center px-1.5 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white mr-8">
+                      <button
+                        onClick={() => handleQuantity("increment", item._id)}
+                        className="size-6 flex items-center justify-center px-1.5 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white mr-8"
+                      >
                         +
                       </button>
                       <div className="ml-5">
