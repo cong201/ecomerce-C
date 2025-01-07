@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import productsData from "../../data/products.json";
+import { useState } from "react";
 import ProductCard from "./ProductCard";
 import ShopFiltering from "./ShopFiltering";
+import { useFetchAllProductsQuery } from "../../redux/feature/products/productsApi";
 const filters = {
   categories: ["all", "accessories", "dress", "jewellery", "cosmetics"],
   colors: ["all", "black", "red", "gold", "blue", "silver", "beige", "green"],
@@ -13,41 +13,32 @@ const filters = {
   ],
 };
 const ShopPage = () => {
-  const [products, setProducts] = useState(productsData);
   const [filtersState, setFiltersState] = useState({
     category: "all",
     color: "all",
     priceRange: "",
   });
-  //filtering funtion
-  const applyFilters = () => {
-    let filteredProducts = productsData;
-    //filter by category
-    if (filtersState.category && filtersState.category !== "all") {
-      filteredProducts = filteredProducts.filter(
-        (product) => product.category === filtersState.category
-      );
-    }
-    //filter by color
-    if (filtersState.color && filtersState.color !== "all") {
-      filteredProducts = filteredProducts.filter(
-        (product) => product.color === filtersState.color
-      );
-    }
-    //filter by price range
-    if (filtersState.priceRange) {
-      const [minPrice, maxPrice] = filtersState.priceRange
-        .split("-")
-        .map(Number);
-      filteredProducts = filteredProducts.filter(
-        (product) => product.price >= minPrice && product.price <= maxPrice
-      );
-    }
-    setProducts(filteredProducts);
-  };
-  useEffect(() => {
-    applyFilters();
-  }, [filtersState]);
+
+  // eslint-disable-next-line no-unused-vars
+  const [currentPage, setCurrentPage] = useState(1);
+  const [ProductPerPage] = useState(8);
+  const { category, color, priceRange } = filtersState;
+  const [minPrice, maxPrice] = priceRange.split("-").map(Number);
+
+  const {
+    // eslint-disable-next-line no-unused-vars
+    data: { products = [], totalPages, totalProducts } = {},
+    error,
+    isLoading,
+  } = useFetchAllProductsQuery({
+    category: category !== "all" ? category : "",
+    color: color !== "all" ? color : "",
+    minPrice: isNaN(minPrice) ? "" : minPrice,
+    maxPrice: isNaN(maxPrice) ? "" : maxPrice,
+    page: currentPage,
+    limit: ProductPerPage,
+  });
+
   const clearFilters = () => {
     setFiltersState({
       category: "all",
@@ -55,6 +46,10 @@ const ShopPage = () => {
       priceRanges: "",
     });
   };
+
+  if (isLoading) return <div>Loading....</div>;
+  if (error) return <div>Error loading products</div>;
+
   return (
     <>
       <section className="section__container bg-primary-light">
