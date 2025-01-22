@@ -19,14 +19,12 @@ const ShopPage = () => {
     priceRange: "",
   });
 
-  // eslint-disable-next-line no-unused-vars
   const [currentPage, setCurrentPage] = useState(1);
   const [ProductPerPage] = useState(8);
   const { category, color, priceRange } = filtersState;
   const [minPrice, maxPrice] = priceRange.split("-").map(Number);
 
   const {
-    // eslint-disable-next-line no-unused-vars
     data: { products = [], totalPages, totalProducts } = {},
     error,
     isLoading,
