@@ -3,6 +3,7 @@ import RatingStars from "../../../components/RatingStars";
 import { useDispatch } from "react-redux";
 import { useFetchProductByIdQuery } from "../../../redux/feature/products/productsApi";
 import { addToCart } from "../../../redux/feature/cart/cartSlice";
+import ReviewCards from "../reviews/ReviewCards";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -83,7 +84,9 @@ const SingleProduct = () => {
         </div>
       </section>
       {/*display Reviews*/}
-      <section className="section__container mt-8">Review Here</section>
+      <section className="section__container mt-8">
+        <ReviewCards productReviews={productReviews} />
+      </section>
     </>
   );
 };
