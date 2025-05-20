@@ -47,7 +47,7 @@ const Navbar = () => {
     try {
       await logoutUser().unwrap();
       dispatch(logout());
-      navigate("/");
+      navigate("/login");
       alert("Logout successfully!");
     } catch (error) {
       console.log("Error logout", error);

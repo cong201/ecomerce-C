@@ -15,6 +15,9 @@ const ReviewCards = ({ productReviews }) => {
   const handleCloseReviewModal = () => {
     setIsModalOpen(false);
   };
+  const handlePost = () => {
+    console.log("post");
+  };
 
   return (
     <div className="my-6 bg-white p-8">
@@ -64,6 +67,7 @@ const ReviewCards = ({ productReviews }) => {
       <PostAReview
         isModalOpen={isModalOpen}
         handleClose={handleCloseReviewModal}
+        handlePost={handlePost}
       />
     </div>
   );

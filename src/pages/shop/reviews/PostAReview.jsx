@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useFetchProductByIdQuery } from "../../../redux/feature/products/productsApi";
 import { usePostReviewMutation } from "../../../redux/feature/reviews/reviewsApi";
 
-const PostAReview = ({ isModalOpen, handleClose }) => {
+const PostAReview = ({ isModalOpen, handleClose, handlePost }) => {
   const { id } = useParams();
   const { user } = useSelector((state) => state.auth);
   const [rating, setRating] = useState(0);
@@ -27,6 +27,7 @@ const PostAReview = ({ isModalOpen, handleClose }) => {
       productId: id,
     };
     try {
+      console.log("kj");
     } catch (error) {
       console.log(error);
     }
@@ -55,12 +56,23 @@ const PostAReview = ({ isModalOpen, handleClose }) => {
             </span>
           ))}
         </div>
-        <button
-          onClick={handleClose}
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Close
-        </button>
+        <div className="w-full h-20 border">
+          <textarea className="w-full h-20 border border-black"></textarea>
+        </div>
+        <div className="flex items-center justify-between">
+          <button
+            onClick={handleClose}
+            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Close
+          </button>
+          <button
+            onClick={handlePost}
+            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Post
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -70,6 +82,7 @@ const PostAReview = ({ isModalOpen, handleClose }) => {
 PostAReview.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
+  handlePost: PropTypes.func.isRequired,
 };
 
 export default PostAReview;
