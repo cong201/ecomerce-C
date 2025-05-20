@@ -41,7 +41,7 @@ const ShopPage = () => {
     setFiltersState({
       category: "all",
       color: "all",
-      priceRanges: "",
+      priceRange: "",
     });
   };
 
